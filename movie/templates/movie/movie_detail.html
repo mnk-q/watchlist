@@ -1,0 +1,98 @@
+{% extends 'movie/base.html' %}
+
+{% block content %}
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-heading text-center">
+                <h2 class="text-info" style="font-family: 'Cinzel Decorative', serif;"><strong> {{ movie.movie_title }}
+                    </strong>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="block-content" style="padding-top: 40px;padding-bottom: 40px;margin-top: 58px;">
+                        <div class="row">
+                            <div class="col-md-4 d-xl-flex justify-content-xl-center"><img class="img-fluid"
+                                    src="{{ movie.movie_poster }}"></div>
+                            <div class="col-md-8">
+                                <div></div>
+                                <p>
+                                    Directed By : <a style="text-decoration: None;" href="{% url 'people_detail' movie.movie_director.people_slug %}"> {{ movie.movie_director }} </a>
+                                    <br><br>
+                                    Runtime: {{ movie.movie_runtime }} Minutes
+                                    <br><br>
+                                    Genre : {% for mg in movie.moviegenre_set.all %} {{ mg.mg_genre }}, {% endfor %}
+                                    <br><br>
+                                    Starring : {% for mc in movie.moviecast_set.all %} <a style="text-decoration: None;" href="{% url 'people_detail' mc.mc_star.people_slug %}">{{ mc.mc_star.people_name }}</a>, {% endfor %}
+                                    <br><br>
+                                    Release Date : {{ movie.movie_release|date:'d M Y' }}
+                                    <br><br>
+                                    Distributed By: Warner Bros
+                                </p>
+                                <span> <i class="fas fa-star" style="font-size: 18px;"></i></span> {{ movie.movie_imdb }}/10<span>&nbsp; &nbsp;
+                                    &nbsp; {% if movie.movie_rt < 60 %} <img src="https://img.icons8.com/fluent/36/000000/rotten-tomatoes.png"/>
+                                           {% else %} <img src="https://img.icons8.com/doodle/36/000000/tomato--v1.png"/> {% endif %}: {{ movie.movie_rt }} %</span>
+                                <hr>
+                                <span style="font-weight: bold">Awards</span>: {{ movie.movie_awards }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-content" style="padding-top: 40px;padding-bottom: 40px;">
+                        <div class="row">
+                            <div class="col">
+                                <h1 style="text-align: center;">Plot</h1>
+                                <hr>
+                                <p> {{ movie.movie_desc }} </p>
+                            </div>
+                        </div>
+                        <div class="upcoming-countdown">
+                            <h1 style="margin-top: 50px;text-align: center;">CountDown</h1>
+                            <div style="margin-top: 8px;text-align: center;"><span
+                                    style="font-family: 'Autour One', serif;margin-top: 0px;">Releasing in&nbsp;</span>
+                                <div class="justify-content-xl-center align-items-xl-center" style="margin-top: 10px;">
+                                    <div class="d-inline-block" style="margin-right: 30px;margin-left: 10px;">
+                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div>
+                                        <span>Days</span>
+                                    </div>
+                                    <div class="d-inline-block" style="margin-right: 30px;margin-left: 10px;">
+                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);margin-right: 0px;">
+                                        </div><span>Hours</span>
+                                    </div>
+                                    <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
+                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div>
+                                        <span>Minute</span>
+                                    </div>
+                                    <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
+                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div>
+                                        <span>Second</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 style="margin-top: 50px;text-align: center;">Available on</h1>
+                        <p style="text-align: center;">Netflix / HBO Icons</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                <h1>Cast</h1>
+                {% for mc in movie.moviecast_set.all %}
+                    <div class="row">
+                        <a style="text-decoration: None; color: inherit;" href="{% url 'people_detail' mc.mc_star.people_slug %}"> <div class="col" style="padding-top: -2px;">
+                            <img class="img-thumbnail img-fluid"
+                                src="{{ mc.mc_star.people_img }}" width="200" height="200">
+                            <p style="font-size: 13px;"> {{ mc.mc_star.people_name }} <br></p></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container" style="text-align: center;">
+            <div></div>
+        </div>
+    </section>
+</main>
+
+
+{% endblock content %}

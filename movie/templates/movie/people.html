@@ -1,0 +1,56 @@
+{% extends 'movie/base.html' %}
+
+{% block content %}
+ <div class="container" style="padding: 20px;text-align: center;">
+        <h1> {{q.people_profession}} </h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 d-xl-flex justify-content-xl-center align-items-xl-center" style="text-align: center;padding: 15px;">
+                <div class="card"><img class="card-img-top w-100 d-block" src="{{q.people_img}}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{q.people_name}}</h4>
+                        <p>Age: {{q.people_dob}}<br></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" style="padding: 15px;">
+                <div></div><strong>Background</strong>
+                <hr>
+                <p>{{q.people_desc}}</p>
+            
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4" style="padding: 15px;">
+                <p></p>
+            </div>
+            <div class="col" style="padding: 15px;">
+                <div>
+                    <h4>Famous for </h4>
+                    <br>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                    {% for fm in q.movie_set.all %}
+                        <ul class="list-group">
+                            <a style="text-decoration: None; color: inherit;" href="{% url 'movie_detail' fm.movie_slug %}"> <li class="list-group-item btn-outline-dark"> {{fm.movie_title}} ( {{fm.movie_year}}) </li></a>
+                        </ul>
+                    {% endfor %}
+
+                    {% for fm in q.moviecast_set.all %}
+                        <ul class="list-group">
+                             <a style="text-decoration: None; color: inherit;" href="{% url 'movie_detail' fm.mc_movie.movie_slug %}" ><li class="list-group-item btn-outline-dark"> {{fm.mc_movie.movie_title}} ( {{fm.mc_movie.movie_year}}) </li></a>
+                        </ul>
+                    {% endfor %}
+                        
+                        
+                    </div>
+                </div>
+                <hr>
+                <h4> Awards</h4>
+                <p>Won {award_name} for {Movie}&nbsp; &nbsp;(Oscar only)</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

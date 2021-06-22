@@ -1,0 +1,53 @@
+{% extends 'movie/base.html' %}
+
+{% block content %}
+<main class="page landing-page">
+        <section class="clean-block clean-hero" style="color: rgba(0,0,0,0.6);background: url(&quot;assets/img/netflix-background-9-900x506.jpg&quot;) round;opacity: 1;">
+            <div class="text">
+                <h2 style="font-family: harry;font-size: 116px;">A Movie Database</h2>
+                <p>with all the past, and future releases, along with What is running in theatres</p><button class="btn btn-outline-light btn-lg" type="button">Check it out!</button>
+            </div>
+        </section>
+        <section class="clean-block features" style="padding-bottom: 24px;padding-top: 30px;">
+            <div class="container" style="border-left: 12px solid var(--bs-success) ;">
+                <h1>Popular Movies</h1>
+            </div>
+        </section>
+        <section class="clean-block about-us">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="assets/img/avatars/avatar1.jpg">
+                            <div class="card-body info">
+                                <h4 class="card-title">Movie Name</h4>
+                                <p class="card-text">Genre<br>Directed By</p>
+                                <div class="icons"><a href="#"><i class="fab fa-imdb"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="assets/img/avatars/avatar2.jpg">
+                            <div class="card-body info">
+                                <h4 class="card-title">Robert Downturn</h4>
+                                <p class="card-text">Genre<br>Directed By<br></p>
+                                <div class="icons"><a href="#"></a><a href="#"><i class="fab fa-imdb"></i></a><a href="#"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="assets/img/avatars/avatar3.jpg">
+                            <div class="card-body info">
+                                <h4 class="card-title">Ally Sanders</h4>
+                                <p class="card-text">Genre<br>Directed By<br></p>
+                                <div class="icons"><a href="#"><i class="fab fa-imdb"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container d-lg-flex justify-content-lg-end"><button class="btn btn-primary" type="button" style="margin-top: 25px;">Show More</button></div>
+        </section>
+        
+    </main>
+
+{% endblock content %}
