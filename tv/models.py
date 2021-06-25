@@ -11,12 +11,24 @@ class TVShow(models.Model):
     tv_imdb = models.CharField(max_length=9, null=True)
     tv_rt = models.CharField(max_length=9, null=True)
     tv_awards = models.CharField(max_length=100, null=True)
-    tv_creator = models.ForeignKey(People, on_delete=models.DO_NOTHING, null=True)
+    tv_creator = models.CharField(max_length=100)
     tv_desc = models.TextField(null=True)
     tv_poster = models.CharField(max_length=400)
+    tv_next_epi= models.DateField(null=True)
 
     def __str__(self) -> str:
         return self.tv_name
+
+class TVSeason(models.Model):
+    tve_tv = models.ForeignKey(TVShow, on_delete=models.CASCADE)
+    tvs_sid = models.AutoField(primary_key=True)
+    tvs_air_date = models.DateField(null=True)
+    tvs_sno = models.CharField(max_length=2)
+    tvs_epicount = models.IntegerField(null=True)
+    tvs_desc = models.TextField(null=True)
+    tvs_poster = models.CharField(max_length=400,null=True)
+    tvs_sname = models.CharField(max_length=20)
+
 
 
 class TVEpisode(models.Model):

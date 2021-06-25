@@ -28,10 +28,9 @@
                     {% comment %} <span style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="navbar-text" ><i class="fas fa-search"></i></span> {% endcomment %}
                     <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}" style="font-family: Audiowide, serif;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'movies-all' %}">Movies</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pricing.html">TV Shows</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url '404' %}">TV Shows</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url '404' %}" >Awards</a></li>
                     <li class="nav-item"><a class="nav-link" href=" {% url 'movie_upcoming' %} ">Upcoming</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'test_area' %}">TestArea</a></li>
                   </ul>
                         <form action='/movies/search', method="GET">
                             <div class="form form-inline">
