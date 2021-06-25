@@ -1,0 +1,14 @@
+{% extends 'movie/base.html' %}
+
+{% block content %}
+<div class="mt-4 display-2 text-center">
+    <span> Test Area </span>
+</div>
+<hr>
+<form action="/test" method="GET">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock content %}

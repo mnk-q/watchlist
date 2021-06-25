@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html>
 
@@ -17,15 +16,7 @@
     <link rel="stylesheet" href="{% static 'movie/assets/css/harry.css' %}">
     <link rel="stylesheet" href="{% static 'movie/assets/css/lumos.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="{% static 'movie/assets/css/Footer-Basic.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="{% static 'movie/assets/css/Sidebar-Menu-Rigth-1.css' %}">
-    <link rel="stylesheet" href="{% static 'movie/assets/css/Sidebar-Menu-Rigth-2.css' %}">
-    <link rel="stylesheet" href="{% static 'movie/assets/css/Sidebar-Menu-Rigth.css' %}">
-    <link rel="stylesheet" href="{% static 'movie/assets/css/Sidebar-right-opening.css' %}">
-    <link rel="stylesheet" href="{% static 'movie/assets/css/vanilla-zoom.min.css' %}">
     <link rel="stylesheet" href="{% static 'movie/assets/css/main.css' %}">
 </head>
 
@@ -35,14 +26,14 @@
             <div class="collapse navbar-collapse" id="navcol-1" style="font-family: Audiowide, serif;">
                 <ul class="navbar-nav ms-auto">
                     {% comment %} <span style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="navbar-text" ><i class="fas fa-search"></i></span> {% endcomment %}
-                    <li class="nav-item"><a class="nav-link active" href="index.html" style="font-family: Audiowide, serif;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}" style="font-family: Audiowide, serif;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'movies-all' %}">Movies</a></li>
                     <li class="nav-item"><a class="nav-link" href="pricing.html">TV Shows</a></li>
-                    <li class="nav-item"><a class="nav-link " href="#" style="color: rgba(0, 0, 0, 0.7);">Awards</a></li>
-                    <li class="nav-item"><a class="nav-link" href="blog-post-list.html">Upcoming</a></li>
-                    </ul>
+                    <li class="nav-item"><a class="nav-link" href="{% url '404' %}" >Awards</a></li>
+                    <li class="nav-item"><a class="nav-link" href=" {% url 'movie_upcoming' %} ">Upcoming</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'test_area' %}">TestArea</a></li>
+                  </ul>
                         <form action='/movies/search', method="GET">
-                            
                             <div class="form form-inline">
                                 <input class="form-group" type="text" name="search" placeholder="search">
                                 <input class="btn btn-outline-dark" type="submit" value="Go">
@@ -55,34 +46,14 @@
     </nav>
     
 
-    <!-- Button trigger modal -->
 
-
-<!-- Modal -->
-{% comment %} <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
     
     {% block content %}
     
     {% endblock content %}
 
     <footer class="footer-basic">
-        <div class="social"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="icon ion-social-github"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+        <div class="social"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Home</a></li>
             <li class="list-inline-item"><a href="#">Services</a></li>
@@ -95,18 +66,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{% static 'movie/assets/js/vanilla-zoom.js' %}"></script>
-    <script src="{% static 'movie/assets/js/theme.js' %}"></script>
-    <script src="{% static 'movie/assets/js/Sidebar-Menu-Rigth.js' %}"></script>
-    <script src="{% static 'movie/assets/js/Sidebar-right-opening.js' %}"></script>
-    <script>
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-
-    myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-    })
-    </script>
+    
 </body>
 
 </html>

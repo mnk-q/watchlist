@@ -58,8 +58,8 @@ class Movie(models.Model):
     movie_slug = models.CharField(max_length=200,null=True)
     movie_year = models.IntegerField(null=True)
     movie_release = models.DateTimeField(null=True)
-    movie_imdb = models.FloatField(null=True)
-    movie_rt = models.IntegerField(null=True)
+    movie_imdb = models.CharField(null=True, max_length=10)
+    movie_rt = models.CharField(null=True, max_length=10)
     movie_rating = models.CharField(max_length=10,null=True)
     movie_poster = models.CharField(max_length=500,null=True)
     movie_popularity = models.FloatField(null=True)
@@ -137,20 +137,3 @@ class ReleaseData(models.Model):
 
     def __str__(self):
         return self.release_date
-
-
-class Award(models.Model):
-    award_id = models.IntegerField(primary_key=True)
-    people_id = models.ForeignKey(People, on_delete=models.CASCADE)
-    movie_id = models.ForeignKey(Movie, on_delete=models.DO_NOTHING)
-    award_name = models.CharField(max_length=100)
-    award_category = models.CharField(max_length=50)
-    award_status = models.CharField(max_length=10)
-    year = models.IntegerField()
-    authority = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.award_name+" "+str(self.year)
-    
-    class Meta:
-        ordering = ["year"]

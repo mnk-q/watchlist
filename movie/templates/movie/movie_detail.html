@@ -46,32 +46,36 @@
                                 <p> {{ movie.movie_desc }} </p>
                             </div>
                         </div>
-                        <div class="upcoming-countdown">
+
+                        <span style="user-select: None;" id="releaseDate"> {{ movie.movie_release|date:'c' }} </span>
+                        <div class="upcoming-countdown not-released">
                             <h1 style="margin-top: 50px;text-align: center;">CountDown</h1>
                             <div style="margin-top: 8px;text-align: center;"><span
                                     style="font-family: 'Autour One', serif;margin-top: 0px;">Releasing in&nbsp;</span>
                                 <div class="justify-content-xl-center align-items-xl-center" style="margin-top: 10px;">
                                     <div class="d-inline-block" style="margin-right: 30px;margin-left: 10px;">
-                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div>
+                                        <div id="days" style="color: white; width: 30px;height: 30px;background: var(--bs-dark);"></div>
                                         <span>Days</span>
                                     </div>
                                     <div class="d-inline-block" style="margin-right: 30px;margin-left: 10px;">
-                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);margin-right: 0px;">
+                                        <div id="hrs" style="color: white; width: 30px;height: 30px;background: var(--bs-dark);margin-right: 0px;">
                                         </div><span>Hours</span>
                                     </div>
                                     <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div>
+                                        <div id="mins" style="color: white; width: 30px;height: 30px;background: var(--bs-dark);"></div>
                                         <span>Minute</span>
                                     </div>
                                     <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                        <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div>
+                                        <div id="sec" style="color: white; width: 30px;height: 30px;background: var(--bs-dark);"></div>
                                         <span>Second</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h1 style="margin-top: 50px;text-align: center;">Available on</h1>
-                        <p style="text-align: center;">Netflix / HBO Icons</p>
+                        <div class="network released">
+                            <h1 style="margin-top: 50px;text-align: center;">Available on</h1>
+                            <p style="text-align: center;">Netflix / HBO Icons</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 text-center">
@@ -93,6 +97,51 @@
         </div>
     </section>
 </main>
+<script>
+    document.getElementById("releaseDate").style.color="white";
+    var d = document.getElementById("releaseDate").innerText;
+    var e = new Date(d);
+    var t = new Date();
+    if(t>e)
+    {
+        document.getElementsByClassName("not-released")[0].style.display = "none";
+    }
+    else
+    {
+        document.getElementsByClassName("released")[0].style.display = "none";
+ 
+        // Set the date we're counting down to
+        var countDownDate =e;
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("days").innerText=days;
+        document.getElementById("hrs").innerText=hours;
+        document.getElementById("mins").innerText=minutes;
+        document.getElementById("sec").innerText=seconds;
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+        }, 1000);
 
 
+    }
+</script>
 {% endblock content %}

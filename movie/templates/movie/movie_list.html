@@ -1,27 +1,58 @@
 {% extends 'movie/base.html' %}
 
 {% block content %}
-<div class="container" style="color: var(--bs-dark);">
+    <div class="container" style="color: var(--bs-dark);">
         <h1 style="font-family: Montserrat, sans-serif;color: var(--bs-dark);">Movies&nbsp;</h1>
-        <div><span style="color: var(--bs-dark);">Sort By -&nbsp;</span><select name="FIlter" value="1">
-                <option value="12" selected="">Popular</option>
-                <option value="13">Top Rated</option>
-                <option value="14">New Released</option>
-                <option value="15">Upcoming</option>
-            </select><span style="color: var(--bs-dark);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Genre&nbsp; -&nbsp;</span><select>
-                <option value="12" selected="">All</option>
-                <option value="action">Action</option>
-                <option value="adventure">Adventure</option>
-                <option value="comedy">Comedy</option>
-                <option value="sci-fi">Sci-Fi</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="kids">Kids</option>
-                <option value="horror">Horror</option>
-                <option value="crime">Crime</option>
-                <option value="drama">Drama</option>
-                <option value="romance">Romance</option>
-                <option value="biography">Biography</option>
-            </select><button class="btn btn-outline-dark" type="button" style="padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;margin-left: 65px;width: 47.4px;border-radius: 19px;font-family: 'Autour One', serif;">Go</button></div>
+        <div>
+        <form action="/movies/filter" method="GET">
+            <div><span style="color: var(--bs-dark);">Sort By - </span><select name="orders">
+        <option value="movie_popularity" selected>Popular</option>
+        <option value="movie_imdb">Top Rated</option>
+        <option value="movie_release">New Released</option>
+    </select><span style="color: var(--bs-dark);">                      Genre  - </span><select name="genre" id="id_genre">
+  <option value="all">All</option>
+
+  <option value="Action">Action</option>
+
+  <option value="Adventure">Adventure</option>
+
+  <option value="Animation">Animation</option>
+
+  <option value="Biography">Biography</option>
+
+  <option value="Comedy">Comedy</option>
+
+  <option value="Crime">Crime</option>
+
+  <option value="Drama">Drama</option>
+
+  <option value="Family">Family</option>
+
+  <option value="Fantasy">Fantasy</option>
+
+  <option value="History">History</option>
+
+  <option value="Horror">Horror</option>
+
+  <option value="Music">Music</option>
+
+  <option value="Mystery">Mystery</option>
+
+  <option value="Romance">Romance</option>
+
+  <option value="Sci-Fi">Sci-Fi</option>
+
+  <option value="Sport">Sport</option>
+
+  <option value="Thriller">Thriller</option>
+
+  <option value="War">War</option>
+
+  <option value="Western">Western</option>
+
+</select>
+<input class="btn btn-outline-dark" type="submit" value="Go" style="padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;margin-left: 65px;width: 47.4px;border-radius: 19px;font-family: 'Autour One', serif;"></div>
+        </div>
     </div>
     <div class="container" style="margin-top: 34px;color: var(--bs-dark);">
         <div class="row" style="color: var(--bs-dark);">
@@ -33,14 +64,6 @@
                     </div>
                 </div>
                 {% for m in mvs %}
-                {% comment %} <div class="row" style="margin-top: 0px;margin-bottom: 30px;">
-                    <div class="col-md-3"><img class="img-fluid" src="{{ m.movie_poster }}" width="170" height="150"></div>
-                    <div class="col">
-                        <p style="color: var(--bs-dark);font-size: 24px;margin-bottom: 0px;"> {{ m.movie_title }} ( {{ m.movie_year }} )&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<i class="fab fa-imdb" style="font-size: 24px;"></i>&nbsp;{{ m.movie_imdb }}/10&nbsp; &nbsp;</p>
-                        <p style="margin-bottom: 0px;font-size: 13px;color: var(--bs-dark);">Directed By: {{ m.movie_director.people_name }}<br>Genre : m.moviegenre_set.all()[0]<br>Rating - {{ m.movie_rating }} &nbsp;</p>
-                    </div>
-                </div>  {% endcomment %}
-
                 <div class="container card mt-2 md-2" style="color: var(--bs-dark);">
                     <div class="row">
                         <div class="col-2"><img class="img-thumbnail img-fluid" src="{{ m.movie_poster }}" height="128" width="160" /></div>
@@ -61,54 +84,6 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
-            <div class="col-md-3 text-center" style="color: var(--bs-dark);">
-                <header>
-                    <h1 class="text-center">Upcoming</h1>
-                </header>
-                <hr>
-                <div class="row">
-                    <div class="col text-center"><img class="img-fluid" src="assets/img/scenery/image5.jpg">
-                        <div style="margin-top: 8px;"><span style="font-family: 'Autour One', serif;margin-top: 0px;">Releasing in&nbsp;</span>
-                            <div class="d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 10px;">
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div><span>Days</span>
-                                </div>
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);margin-right: 0px;"></div><span>Hours</span>
-                                </div>
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div><span>Minute</span>
-                                </div>
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div><span>Second</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col text-center"><img class="img-fluid" src="assets/img/scenery/image5.jpg">
-                        <div style="margin-top: 8px;"><span style="font-family: 'Autour One', serif;margin-top: 0px;">Releasing in&nbsp;</span>
-                            <div class="d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 10px;">
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div><span>Days</span>
-                                </div>
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);margin-right: 0px;"></div><span>Hours</span>
-                                </div>
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div><span>Minute</span>
-                                </div>
-                                <div class="d-inline-block" style="margin-right: 10px;margin-left: 10px;">
-                                    <div style="width: 30px;height: 30px;background: var(--bs-dark);"></div><span>Second</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

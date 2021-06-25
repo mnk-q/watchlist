@@ -8,22 +8,18 @@
         <div class="row">
             <div class="col-md-4 d-xl-flex justify-content-xl-center align-items-xl-center" style="text-align: center;padding: 15px;">
                 <div class="card"><img class="card-img-top w-100 d-block" src="{{q.people_img}}">
-                    <div class="card-body">
-                        <h4 class="card-title">{{q.people_name}}</h4>
-                        <p>Age: {{q.people_dob}}<br></p>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-md-8" style="padding: 15px;">
-                <div></div><strong>Background</strong>
+                <div></div><strong><h4 class="card-title">{{q.people_name}}</h4></strong>
                 <hr>
                 <p>{{q.people_desc}}</p>
-            
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4" style="padding: 15px;">
-                <p></p>
+            <div class="col-md-4 text-center" style="padding: 15px;">
+                <p>Profession : {{ q.people_profession }} <br /><br />Age: <span id="age"></span> Years<br /><br /></p>
             </div>
             <div class="col" style="padding: 15px;">
                 <div>
@@ -52,5 +48,12 @@
             </div>
         </div>
     </div>
+    <script>
+    var d = {{ q.people_dob|date:'Y' }};
+    var e = new Date();
+    var f = e.getFullYear()-d;
+
+    document.getElementById("age").innerText = f;
+    </script>
 
 {% endblock content %}
